@@ -44,9 +44,9 @@ function runSet(set, callback) {
       }
     }
 
-    var server = new WebSocket.Server({ port: SERVER_PORT }),
+    var server = new WebSocket.Server({ port: SERVER_PORT }, { perMessageDeflate: false }),
         proxy = httpProxy.createServer(SERVER_PORT, 'localhost').listen(PROXY_PORT),
-        client = new WebSocket('ws://localhost:' + port),
+        client = new WebSocket('ws://localhost:' + port, { perMessageDeflate: false }),
         got = 0,
         t = new Date();
 
